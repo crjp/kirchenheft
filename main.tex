@@ -1,0 +1,159 @@
+\documentclass[a5,fontsize=24pt]{scrartcl}
+
+\usepackage{setspace}
+
+\usepackage{ifthen}
+\newboolean{isPrint}
+
+\setboolean{isPrint}{false}
+
+\usepackage[ngerman]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[utf8]{inputenc}
+
+\usepackage{tabularx}
+\usepackage{tikz}
+\usepackage{geometry}
+
+\usepackage{calligra}
+\usepackage{miama}
+\usepackage[default]{raleway}
+
+\graphicspath{{img/}}
+
+
+\newcommand{\setfont}[2]{{\fontfamily{#1}\selectfont #2}}
+
+\usepackage{array}
+\newcolumntype{Z}{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}X}
+
+
+\pagenumbering{gobble}
+
+\begin{document}
+
+
+\newcommand{\headingCI}[1]{\fmmfamily{\fontsize{80}{60}\selectfont{#1}}}
+\newcommand{\headingCII}[1]{\fmmfamily{\LARGE{\hspace{-1em}#1}}}
+\newcommand{\headingI}[1]{\fmmfamily{\LARGE{\hspace{-0.5em}#1\vspace{0ex}}}}
+\newcommand{\headingCIII}[1]{\normalfont\footnotesize{#1}}
+\newcommand{\headingCIV}[1]{\normalfont\scriptsize{#1}}
+\newcommand{\headingII}[1]{\normalfont\tiny{#1~\vspace{1ex}}}
+\newcommand{\headingIII}[1]{\normalfont\scriptsize{#1~\vspace{0ex}}}
+
+\newcommand{\tableI}{\scriptsize}
+
+\newcommand{\soloI}{
+\begin{tikzpicture}{remember picture, overlay}
+\put(-90,-45) {\includegraphics[width=0.3\textwidth, clip, trim=00 00 00 00]{notenBlume.pdf};}
+\node at (1,0){\headingI{Sologesang}};
+\end{tikzpicture}
+}
+
+\newcommand{\begruessung}{
+\headingI{Begrüßung}
+}
+
+\newcommand{\footer}{
+\begin{tikzpicture}{remember picture}
+\put(-23,-60) {
+  \includegraphics[width=0.1\textwidth]{herzBlume.pdf};
+}
+\end{tikzpicture}
+}
+
+\newcommand{\gI}{
+ \newgeometry{
+  left=2.5cm,
+  right=2.5cm,
+  top=2cm,
+  bottom=2cm,
+ }
+}
+
+\newcommand{\gII}{
+  \newgeometry{
+    left=2.5cm,
+    right=2.5cm,
+    top=2.5cm,
+    bottom=2.5cm,
+  }
+}
+
+\ifthenelse{\boolean{isPrint}}
+{ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%       Reihenfolge für Druck         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\gI
+
+ \include{parts/c4}
+
+ \include{parts/c1}
+
+ \restoregeometry
+
+ \include{parts/c2}
+
+ \include{parts/c3}
+
+ \gII
+
+ \include{parts/8}
+
+ \include{parts/1}
+
+ \include{parts/2}
+
+ \include{parts/7}
+
+ \include{parts/6}
+
+ \include{parts/3}
+
+ \include{parts/4}
+
+ \include{parts/5}
+
+}
+{
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%		Reihenfolge zur Ansicht	      %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\gI
+
+\include{parts/c1}
+
+\restoregeometry
+
+\include{parts/c2}
+\clearpage
+
+\gII
+
+\include{parts/1}
+
+\include{parts/2}
+
+\include{parts/3}
+
+\include{parts/4}
+
+\include{parts/5}
+
+\include{parts/6}
+
+\include{parts/7}
+
+\include{parts/8}
+
+\include{parts/c3}
+}
+
+
+
+
+\end{document}
